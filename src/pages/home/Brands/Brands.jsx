@@ -20,17 +20,19 @@ const Brands = () => {
     star,
     star_people,
   ];
-  const loopedBrands = [...brands, ...brands];
+
   return (
     <div className="mt-20 mb-5 text-secondary">
-      <h2 className="text-center  text-2xl font-bold mb-10 text-secondary ">We've helped thousands of sales teams</h2>
+      <h2 className="text-center  text-2xl font-bold mb-10 text-secondary ">
+        We've helped thousands of sales teams
+      </h2>
       <Swiper
         slidesPerView={4}
         spaceBetween={30}
         grabCursor={true}
         freeMode={true}
         loop={true}
-        loopedSlides={loopedBrands.length}
+        loopedSlides={brands.length}
         speed={5000}
         modules={[Autoplay]}
         autoplay={{
@@ -39,7 +41,7 @@ const Brands = () => {
           pauseOnMouseEnter: false,
         }}
       >
-        {loopedBrands.map((logo, index) => (
+        {brands.map((logo, index) => (
           <SwiperSlide key={index}>
             <img src={logo} alt="" />
           </SwiperSlide>

@@ -19,7 +19,7 @@ const DescriptionCard = ({ feature }) => {
 
       {/* Content Section */}
       <div className="flex-grow md:pl-10">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+        <h2 className="text-2xl font-semibold text-secondary mb-2">
           {feature.title}
         </h2>
         <p className="text-gray-600 leading-relaxed">{feature.description}</p>
