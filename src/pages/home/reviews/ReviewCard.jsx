@@ -6,7 +6,7 @@ const ReviewCard = ({ review }) => {
   const { userName, review: testimonial, user_photoURL, ratings } = review;
   return (
     <div className="p-8 ">
-      <div className="card w-96 bg-base-100 shadow-xl rounded-2xl p-6 border-4 border-gray-100/50">
+      <div className="card  bg-base-100 shadow-xl rounded-2xl p-6 border-4 border-gray-100/50">
         {/* Quote Section */}
         <div className="mb-6">
           <FaQuoteLeft className="text-5xl text-teal-300  mb-4" />
