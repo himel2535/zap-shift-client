@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Booking Pick & Drop",
+    "desc": "From personal packages to business shipments — we deliver on time, every time.",
+    "icon": "/howitworks.png"
+  },
+  {
+    "id": 2,
+    "title": "Cash On Delivery",
+    "desc": "From personal packages to business shipments — we deliver on time, every time.",
+    "icon": "/howitworks.png"
+  },
+  {
+    "id": 3,
+    "title": "Delivery Hub",
+    "desc": "From personal packages to business shipments — we deliver on time, every time.",
+    "icon": "/howitworks.png"
+  },
+  {
+    "id": 4,
+    "title": "Booking SME & Corporate",
+    "desc": "From personal packages to business shipments — we deliver on time, every time.",
+    "icon": "/howitworks.png"
+  }
+]
