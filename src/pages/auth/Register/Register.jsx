@@ -31,19 +31,30 @@ const Register = () => {
           {/* ---password--- */}
           <label className="label">Password</label>
           <input
-            {...register("password", { required: true, minLength: 6 })}
+            {...register("password", {
+              required: true,
+              minLength: 8,
+              pattern:
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/,
+            })}
             type="password"
             className="input"
             placeholder="Password"
           />
-          
+
           {errors.password?.type === "required" && (
             <p className="text-red-500">Password is required</p>
           )}
 
           {errors.password?.type === "minLength" && (
             <p className="text-red-500">
-              Password must be six characters or longer
+              Password must be 8 characters or longer
+            </p>
+          )}
+          {errors.password?.type === "pattern" && (
+            <p className="text-red-500">
+              Password must have at least one uppercase,at least one lowercase,
+              at least one digit and at least one special character
             </p>
           )}
           <div>
