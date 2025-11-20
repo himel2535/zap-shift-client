@@ -32,7 +32,7 @@ const Brands = () => {
         grabCursor={true}
         freeMode={true}
         loop={true}
-        loopedSlides={brands.length}
+        // loopedSlides={brands.length}
         speed={5000}
         modules={[Autoplay]}
         autoplay={{

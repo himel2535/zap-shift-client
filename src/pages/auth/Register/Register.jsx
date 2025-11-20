@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import { Link } from "react-router";
 import SocialLogin from "../socialLogin/SocialLogin";
+import axios from "axios";
 
 const Register = () => {
-  
-  const { registerUser } = useAuth();
+  const { registerUser, updateUserProfile } = useAuth();
 
   const {
     register,
@@ -15,10 +15,39 @@ const Register = () => {
   } = useForm();
 
   const handleRegistration = (data) => {
-    console.log(data);
+    console.log("after register:", data.photo[0]);
+    const profileImg = data.photo[0];
+
     registerUser(data.email, data.password)
       .then((result) => {
         console.log(result.user);
+
+        // 1.store the image in form data-->
+        const formData = new FormData();
+        formData.append("image", profileImg);
+
+        // 2. Send the photo to store and get the url-->
+        const image_API_URL = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_IMAGE_HOST_KEY
+        }`;
+
+        axios.post(image_API_URL, formData).then((res) => {
+          console.log("after image upload", res.data.data.url);
+
+          // update user profile to firebase
+          const userProfile = {
+            displayName: data.name,
+            photoURL: res.data.data.url,
+          };
+          
+          updateUserProfile(userProfile)
+            .then(() => {
+              console.log("user profile updated done");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -36,6 +65,36 @@ const Register = () => {
       <div className="card-body">
         <form onSubmit={handleSubmit(handleRegistration)}>
           <fieldset className="fieldset ">
+            {/* ---Name--- */}
+            <label className="label">Name</label>
+            <input
+              {...register("name", {
+                required: true,
+              })}
+              type="text"
+              className="input"
+              placeholder="Your Name"
+            />
+
+            {errors.name?.type === "required" && (
+              <p className="text-red-500">Name is required</p>
+            )}
+
+            {/* ---Photo--- */}
+            <label className="label">YOUR Photo</label>
+            <input
+              {...register("photo", {
+                required: true,
+              })}
+              type="file"
+              className="file-input"
+              placeholder="Your Photo"
+            />
+
+            {errors.photo?.type === "required" && (
+              <p className="text-red-500">Photo is required</p>
+            )}
+
             {/* ---Email--- */}
             <label className="label">Email</label>
             <input
@@ -72,9 +131,7 @@ const Register = () => {
                 lowercase, at least one digit and at least one special character
               </p>
             )}
-            {/* <div>
-            <a className="link link-hover">Forgot password?</a>
-          </div> */}
+
             <button className="btn btn-neutral mt-4">Register</button>
           </fieldset>
           <p>
