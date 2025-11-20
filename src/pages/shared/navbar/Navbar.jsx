@@ -1,10 +1,12 @@
 import React from "react";
 import Logo from "../../../components/logo/Logo";
-import { NavLink } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const location =useLocation()
+  console.log("location :--",location)
 
   const handleLogout = () => {
     logOut()
@@ -73,9 +75,9 @@ const Navbar = () => {
             Login
           </NavLink>
         )}
-        <NavLink to="/beARider" className="btn btn-primary text-black">
+        <Link to="/rider" className="btn btn-primary text-black">
           Be a rider
-        </NavLink>
+        </Link>
       </div>
     </div>
   );
