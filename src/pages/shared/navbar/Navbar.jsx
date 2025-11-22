@@ -5,8 +5,8 @@ import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const location =useLocation()
-  console.log("location :--",location)
+  const location = useLocation();
+  console.log("location :--", location);
 
   const handleLogout = () => {
     logOut()
@@ -26,6 +26,9 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink to="/coverage">Coverage</NavLink>
+      </li>
+      <li>
+        <NavLink to="/send-parcel">Send Parcel</NavLink>
       </li>
     </>
   );
